@@ -1,0 +1,40 @@
+<div class="flex justify-center">
+    <ul class="pg-group">
+
+        {% if post_paginate.has_previous %}
+            <li>
+                <a href="?{% if query %}q={{ query }}&{% endif %}page={{ post_paginate.previous_page_number }}"
+                   class="pg-prev">
+                    <span class="sr-only">Previous</span>
+                    <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                         fill="none" viewBox="0 0 6 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M5 1 1 5l4 4"></path>
+                    </svg>
+                </a>
+            </li>
+        {% endif %}
+
+        {% for i in post_paginate.paginator.page_range %}
+            {% if post_paginate.number == i %}
+                <li><a class="pg-number-active">{{ i }}</a></li>
+            {% else %}
+                <li><a class="pg-number" href="?{% if query %}q={{ query }}&{% endif %}page={{ i }}">{{ i }}</a>
+                </li>
+            {% endif %}
+        {% endfor %}
+
+        {% if post_paginate.has_next %}
+            <li>
+                <a class="pg-next" href="?{% if query %}q={{ query }}&{% endif %}page={{ post_paginate.next_page_number }}">
+                    <span class="sr-only">Next</span>
+                    <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                         fill="none" viewBox="0 0 6 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="m1 9 4-4-4-4"></path>
+                    </svg>
+                </a>
+            </li>
+        {% endif %}
+    </ul>
+</div>

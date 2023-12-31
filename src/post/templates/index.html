@@ -1,0 +1,19 @@
+{% extends "layouts/_base.html" %}
+
+{% block content %}
+    <h1>Test</h1>
+    <a href="{% url 'post:create' %}" class="button-simple">Create Post</a>
+    <form method="GET" class="flex w-auto">
+        <input type="text" name="q" class="form-input" placeholder="Title, author...">
+        <button type="submit" class="button-simple">Search</button>
+    </form>
+    {% if posts %}
+        {% for post in posts %}
+            {% include 'elements/single_post.html' with post=post %}
+        {% endfor %}
+    {% else %}
+        <div class="text-slate-700 text-xl">Not have any post</div>
+    {% endif %}
+    {% include 'elements/paginate.html' with post_paginate=posts %}
+
+{% endblock content %}

@@ -1,0 +1,12 @@
+<div class="card-simple rounded-lg mt-8 w-[400px]">
+    <div class="card-header">
+        <h3 class="card-title">{{ post.title }}</h3>
+    </div>
+    <div class="card-content">
+        <div class="my-4 mx-6">
+            <p class="text-xl text-center text-slate-900 font-medium">{{ post.content }}</p>
+            <p class="text-base text-end text-slate-700 font-thin">{{ post.author }}</p>
+        </div>
+    </div>
+    <a href="{% url 'post:update' slug=post.slug %}" class="button-simple">Update Post</a>
+</div>

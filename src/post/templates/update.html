@@ -1,0 +1,51 @@
+{% extends "layouts/_base.html" %}
+
+{% block content %}
+    <div class="w-full h-full element-center">
+        <div class="card-simple w-[720px]">
+            <form method="POST" id="" class="">
+                {% csrf_token %}
+                <div class="card-header">
+                    <h1 class="card-title text-slate-800 text-center">Update post</h1>
+                </div>
+                <div class="card-content">
+                    <div class="form-group">
+                        <label for="title" class="input-label">Title</label>
+                        <input type="text" id="title" class="form-input mx-auto" name="title" placeholder="Title"
+                               value="{{ form.initial.title }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="content" class="input-label">Content</label>
+                        <input type="text" id="content" class="form-input mx-auto" name="content" placeholder="Content"
+                               value="{{ form.initial.content }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="author" class="input-label">Author</label>
+                        <input type="text" id="author" class="form-input mx-auto" name="author" placeholder="Author"
+                               value="{{ form.initial.author }}">
+                    </div>
+                </div>
+                <div class="mx-auto text-center mt-4">
+                    <button type="submit"
+                            class="bg-green-600 hover:bg-emerald-600 text-white font-medium px-8 py-2 rounded-lg">
+                        Submit
+                    </button>
+                    <button id="handle-delete" class="button-gradient">Delete</button>
+                </div>
+            </form>
+        </div>
+
+        <form id="form-deleting" method="POST" class="hidden" action="{% url 'post:delete' slug=slug %}">
+            {% csrf_token %}
+        </form>
+    </div>
+    <script type="text/javascript">
+        const btnHandleDelete = document.getElementById("handle-delete")
+        const funcDeleting = document.getElementById("form-deleting")
+
+        btnHandleDelete.onclick = (e) => {
+            e.preventDefault()
+            funcDeleting.submit()
+        }
+    </script>
+{% endblock content %}
